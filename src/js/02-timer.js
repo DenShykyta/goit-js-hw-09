@@ -35,11 +35,15 @@ function ontimer() {
         Notiflix.Notify.failure("Please choose a date in the future");
         startBtn.disabled = true;
     } else {
-    setInterval(() => {
+    const inetvalId = setInterval(() => {
         const currentTime = Date.now();
         const timeLeft = inputTime - currentTime;
         const timeComponents = convertMs(timeLeft);
         markupTimer(timeComponents);
+        if (timeLeft <= 0) {
+            clearInterval(inetvalId);
+            
+        }
    }, 1000);
     }
 }
